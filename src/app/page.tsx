@@ -84,7 +84,7 @@ export default function Home() {
           </section>
 
           {/* --- RECOMMENDED GEAR (Affiliate) --- */}
-          <section className="w-full max-w-3xl">
+          <section className="w-full max-w-4xl">
             <h2 className="text-2xl font-serif font-bold text-[var(--color-ink)] mb-6 text-center">
               Recommended Gear
             </h2>
@@ -92,19 +92,57 @@ export default function Home() {
               より良い声を届けるための、おすすめ機材
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Placeholder Affiliate Cards */}
-              <div className="p-6 border border-[var(--color-ink)]/10 rounded-lg bg-white/30 hover:bg-white/50 transition-colors">
+              {/* Microphone 1 */}
+              <a
+                href="https://www.amazon.co.jp/dp/B0006H92QK?tag=airamot-22"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block p-6 border border-[var(--color-ink)]/10 rounded-lg bg-white/30 hover:bg-white/50 hover:border-[var(--color-science-cyan)] transition-all group"
+              >
                 <div className="text-3xl mb-3">🎙️</div>
-                <h3 className="font-bold text-[var(--color-ink)] mb-2">配信用マイク</h3>
-                <p className="text-xs text-[var(--color-ink)]/60">クリアな声を届けるためのコンデンサーマイク</p>
-                <p className="text-xs text-[var(--color-ink)]/40 mt-4 font-mono">[準備中]</p>
-              </div>
-              <div className="p-6 border border-[var(--color-ink)]/10 rounded-lg bg-white/30 hover:bg-white/50 transition-colors">
+                <h3 className="font-bold text-[var(--color-ink)] mb-1 group-hover:text-[var(--color-science-cyan)]">Audio-Technica AT2020</h3>
+                <p className="text-xs text-[var(--color-ink)]/60 mb-3">配信者の大定番。クリアでバランスの良い音質。</p>
+                <span className="text-xs font-mono text-[var(--color-science-cyan)]">Amazonで見る →</span>
+              </a>
+
+              {/* Microphone 2 */}
+              <a
+                href="https://www.amazon.co.jp/dp/B08G7JN6J7?tag=airamot-22"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block p-6 border border-[var(--color-ink)]/10 rounded-lg bg-white/30 hover:bg-white/50 hover:border-[var(--color-science-cyan)] transition-all group"
+              >
+                <div className="text-3xl mb-3">🎤</div>
+                <h3 className="font-bold text-[var(--color-ink)] mb-1 group-hover:text-[var(--color-science-cyan)]">SHURE MV7</h3>
+                <p className="text-xs text-[var(--color-ink)]/60 mb-3">USB/XLR両対応。将来のアップグレードにも対応。</p>
+                <span className="text-xs font-mono text-[var(--color-science-cyan)]">Amazonで見る →</span>
+              </a>
+
+              {/* Headphones 1 */}
+              <a
+                href="https://www.amazon.co.jp/dp/B00HVLUR86?tag=airamot-22"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block p-6 border border-[var(--color-ink)]/10 rounded-lg bg-white/30 hover:bg-white/50 hover:border-[var(--color-science-cyan)] transition-all group"
+              >
                 <div className="text-3xl mb-3">🎧</div>
-                <h3 className="font-bold text-[var(--color-ink)] mb-2">モニターヘッドホン</h3>
-                <p className="text-xs text-[var(--color-ink)]/60">自分の声を正確に聴くためのスタジオヘッドホン</p>
-                <p className="text-xs text-[var(--color-ink)]/40 mt-4 font-mono">[準備中]</p>
-              </div>
+                <h3 className="font-bold text-[var(--color-ink)] mb-1 group-hover:text-[var(--color-science-cyan)]">Audio-Technica ATH-M50x</h3>
+                <p className="text-xs text-[var(--color-ink)]/60 mb-3">DTM・配信の超定番。バランスの取れた音質。</p>
+                <span className="text-xs font-mono text-[var(--color-science-cyan)]">Amazonで見る →</span>
+              </a>
+
+              {/* Headphones 2 */}
+              <a
+                href="https://www.amazon.co.jp/dp/B000UPEJCU?tag=airamot-22"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block p-6 border border-[var(--color-ink)]/10 rounded-lg bg-white/30 hover:bg-white/50 hover:border-[var(--color-science-cyan)] transition-all group"
+              >
+                <div className="text-3xl mb-3">🎵</div>
+                <h3 className="font-bold text-[var(--color-ink)] mb-1 group-hover:text-[var(--color-science-cyan)]">SONY MDR-CD900ST</h3>
+                <p className="text-xs text-[var(--color-ink)]/60 mb-3">プロ現場で30年の実績。原音忠実再生。</p>
+                <span className="text-xs font-mono text-[var(--color-science-cyan)]">Amazonで見る →</span>
+              </a>
             </div>
           </section>
 
