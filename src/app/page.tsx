@@ -1,8 +1,7 @@
 import StarryBackground from "@/components/StarryBackground";
 import ScrollContainer from "@/components/ScrollContainer";
 import AudioVisualizer from "@/components/AudioVisualizer";
-import ServiceCard from "@/components/ServiceCard";
-import CertificateMockup from "@/components/CertificateMockup";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -27,8 +26,8 @@ export default function Home() {
             <AudioVisualizer />
 
             <p className="text-xs font-mono text-[var(--color-ink)]/60 text-center max-w-md">
-              Speak into the void. See your voice transformed into data. <br />
-              This is the beginning of your analysis.
+              夜空に向かって、語りかけてください。<br />
+              あなたの声が、光とデータへと変わります。
             </p>
           </section>
 
@@ -41,40 +40,13 @@ export default function Home() {
               Science x Fantasy
             </h2>
             <p className="text-[var(--color-ink)]/80 leading-relaxed font-serif">
-              Ortiz Records is a dedicated analysis service for streamers, Vtubers, and vocalists.
-              We don't just measure pitch; we quantify charisma.
-              We analyze the <strong>harmonics</strong> of your soul and map them to <strong>fantasy skills</strong>.
+              オルティーズAIレコードは、配信者・Vtuber・ヴォーカリストのための<br className="hidden md:inline" />
+              専門的なAI音声分析サービスです。<br /><br />
+              私たちは単に音程を測るだけではありません。<br />
+              あなたの<strong>「カリスマ性」</strong>を数値化し、<br />
+              魂の<strong>倍音（ハーモニクス）</strong>を解析して、<br />
+              それを<strong>異世界スキル</strong>として具現化します。
             </p>
-          </section>
-
-          {/* --- SERVICE SECTION --- */}
-          <section className="w-full max-w-4xl">
-            <div className="text-center mb-12">
-              <h2 className="text-2xl font-serif font-bold text-[var(--color-ink)] mb-2">Service Menu</h2>
-              <p className="text-sm text-[var(--color-science-cyan)] font-mono">⚠️ BETA PHASE DISCOUNTS ACTIVE</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <ServiceCard
-                title="Voice Diagnosis"
-                priceBeta="¥1,000"
-                priceRegular="¥1,500"
-                features={["A cappella Analysis (1 min)", "Vocal Range & Pitch", "Harmonic Structure Check"]}
-              />
-              <ServiceCard
-                title="Song Diagnosis"
-                priceBeta="¥1,500"
-                priceRegular="¥2,000"
-                features={["Full Song Analysis", "Expression Dynamics", "Solfeggio Frequencies"]}
-                isPremium={true}
-              />
-              <ServiceCard
-                title="Pair Diagnosis"
-                priceBeta="¥2,300"
-                priceRegular="¥3,000"
-                features={["Voice + Song Combo", "Detailed Comparison", "Best Value for Beginners"]}
-              />
-            </div>
           </section>
 
           {/* --- SKILL SYSTEM SECTION --- */}
@@ -86,34 +58,60 @@ export default function Home() {
               <div>
                 <div className="text-4xl mb-2">🛡️</div>
                 <h3 className="font-bold text-[var(--color-ink)]">Common</h3>
-                <p className="text-xs text-[var(--color-ink)]/60 mt-2">Standard detection (60-85%). Solid foundations.</p>
+                <p className="text-xs text-[var(--color-ink)]/60 mt-2">標準的な検出 (60-85%)。揺るぎない基礎能力。</p>
               </div>
               <div>
                 <div className="text-4xl mb-2">✨</div>
                 <h3 className="font-bold text-[var(--color-ink)]">Gifted</h3>
-                <p className="text-xs text-[var(--color-ink)]/60 mt-2">High resonance (&gt;85%). A rare talent.</p>
+                <p className="text-xs text-[var(--color-ink)]/60 mt-2">高共鳴 (&gt;85%)。選ばれし天賦の才。</p>
               </div>
               <div>
                 <div className="text-4xl mb-2">🔮</div>
                 <h3 className="font-bold text-[var(--color-magic-gold)]">Unique</h3>
-                <p className="text-xs text-[var(--color-ink)]/60 mt-2">Miraculous combinations. Only 5% probability.</p>
+                <p className="text-xs text-[var(--color-ink)]/60 mt-2">奇跡的な組み合わせ。出現率わずか5%。</p>
               </div>
+            </div>
+
+            {/* Learn More Link */}
+            <div className="mt-8 text-center">
+              <Link
+                href="/pro"
+                className="text-sm text-[var(--color-science-cyan)] hover:underline font-mono"
+              >
+                本格的な解析について詳しく →
+              </Link>
             </div>
           </section>
 
-          {/* --- CERTIFICATE PREVIEW --- */}
-          <section className="w-full flex flex-col items-center gap-8">
-            <div className="text-center">
-              <h2 className="text-2xl font-serif font-bold text-[var(--color-ink)]">Proof of Existence</h2>
-              <p className="text-sm text-[var(--color-ink)]/60 mt-2 font-mono">YOUR OFFICIAL ANALYSIS CERTIFICATE</p>
+          {/* --- RECOMMENDED GEAR (Affiliate) --- */}
+          <section className="w-full max-w-3xl">
+            <h2 className="text-2xl font-serif font-bold text-[var(--color-ink)] mb-6 text-center">
+              Recommended Gear
+            </h2>
+            <p className="text-center text-[var(--color-ink)]/60 text-sm mb-8">
+              より良い声を届けるための、おすすめ機材
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Placeholder Affiliate Cards */}
+              <div className="p-6 border border-[var(--color-ink)]/10 rounded-lg bg-white/30 hover:bg-white/50 transition-colors">
+                <div className="text-3xl mb-3">🎙️</div>
+                <h3 className="font-bold text-[var(--color-ink)] mb-2">配信用マイク</h3>
+                <p className="text-xs text-[var(--color-ink)]/60">クリアな声を届けるためのコンデンサーマイク</p>
+                <p className="text-xs text-[var(--color-ink)]/40 mt-4 font-mono">[準備中]</p>
+              </div>
+              <div className="p-6 border border-[var(--color-ink)]/10 rounded-lg bg-white/30 hover:bg-white/50 transition-colors">
+                <div className="text-3xl mb-3">🎧</div>
+                <h3 className="font-bold text-[var(--color-ink)] mb-2">モニターヘッドホン</h3>
+                <p className="text-xs text-[var(--color-ink)]/60">自分の声を正確に聴くためのスタジオヘッドホン</p>
+                <p className="text-xs text-[var(--color-ink)]/40 mt-4 font-mono">[準備中]</p>
+              </div>
             </div>
-            <CertificateMockup />
           </section>
 
           {/* --- FOOTER --- */}
           <section className="text-center pt-12 border-t border-[var(--color-ink)]/10 w-full">
             <p className="font-mono text-sm text-[var(--color-ink)]/50 tracking-widest mb-4">
-              COMING SOON TO MINECRAFT
+              COMING SOON
             </p>
             <a
               href="https://twitter.com/your_twitter"

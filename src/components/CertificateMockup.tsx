@@ -45,8 +45,8 @@ export default function CertificateMockup() {
                         <h2 className="text-3xl font-serif font-bold text-[var(--color-ink)] mb-1">Singer of the Spirit Forest</h2>
                         <h3 className="text-sm font-serif italic text-[var(--color-magic-gold)] mb-6">Unique Skill / 精霊の森の歌い手</h3>
 
-                        <p className="text-sm text-[var(--color-ink)]/80 leading-relaxed font-serif">
-                            Detected frequencies of 285Hz, 528Hz, and 741Hz suggest a rare restorative vocal quality. This voice possesses the characteristics of ancient healing rites, capable of stabilizing the listener's emotional state.
+                        <p className="text-sm text-[var(--color-ink)]/80 leading-relaxed font-serif text-justify">
+                            検出された285Hz、528Hz、741Hzの周波数が、稀有な回復系声質を示唆しています。この声は古代の治癒儀式に見られる特性を有しており、聴衆の精神状態を安定させる力を持っています。
                         </p>
                     </div>
 

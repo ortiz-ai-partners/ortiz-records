@@ -6,6 +6,7 @@ export default function AudioVisualizer() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [peakFrequency, setPeakFrequency] = useState<number | null>(null);
     const animationRef = useRef<number>(null);
     const audioContextRef = useRef<AudioContext | null>(null);
     const analyserRef = useRef<AnalyserNode | null>(null);
@@ -33,45 +34,70 @@ export default function AudioVisualizer() {
             draw();
         } catch (err) {
             console.error("Error accessing microphone:", err);
-            setError("Microphone access denied or not available.");
+            setError("マイクへのアクセスが拒否されたか、利用できません。");
         }
     };
 
     const stopAnalysis = () => {
         if (animationRef.current) {
             cancelAnimationFrame(animationRef.current);
+            animationRef.current = null;
         }
         if (sourceRef.current) {
             sourceRef.current.disconnect();
+            sourceRef.current = null;
         }
-        if (audioContextRef.current) {
+        if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
             audioContextRef.current.close();
+            audioContextRef.current = null;
         }
         setIsAnalyzing(false);
+        setPeakFrequency(null);
     };
 
     const draw = () => {
-        if (!canvasRef.current || !analyserRef.current) return;
+        if (!canvasRef.current || !analyserRef.current || !audioContextRef.current) return;
 
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
-        const bufferLength = analyserRef.current.frequencyBinCount;
+        const analyser = analyserRef.current;
+        const bufferLength = analyser.frequencyBinCount;
         const dataArray = new Uint8Array(bufferLength);
+        const frequencyData = new Uint8Array(bufferLength);
+        const sampleRate = audioContextRef.current.sampleRate;
 
         const renderFrame = () => {
             animationRef.current = requestAnimationFrame(renderFrame);
-            analyserRef.current!.getByteTimeDomainData(dataArray);
+            analyser.getByteTimeDomainData(dataArray);
+            analyser.getByteFrequencyData(frequencyData);
 
-            // Clear with a slight fade effect for trails (optional, keeping it clean for now)
+            // Find peak frequency
+            let maxIndex = 0;
+            let maxValue = 0;
+            for (let i = 0; i < bufferLength; i++) {
+                if (frequencyData[i] > maxValue) {
+                    maxValue = frequencyData[i];
+                    maxIndex = i;
+                }
+            }
+            // Only update if there's meaningful audio
+            if (maxValue > 30) {
+                const frequency = (maxIndex * sampleRate) / (analyser.fftSize);
+                setPeakFrequency(Math.round(frequency));
+            } else {
+                setPeakFrequency(null);
+            }
+
+            // Clear canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             // Draw styling
             ctx.lineWidth = 2;
-            ctx.strokeStyle = "var(--color-science-cyan)"; // Using our global variable
+            ctx.strokeStyle = "#00F0FF";
             ctx.shadowBlur = 10;
-            ctx.shadowColor = "var(--color-science-cyan)";
+            ctx.shadowColor = "#00F0FF";
 
             ctx.beginPath();
 
@@ -117,6 +143,18 @@ export default function AudioVisualizer() {
                     SPECTRAL ANALYSIS UNIT // {isAnalyzing ? "ACTIVE" : "STANDBY"}
                 </div>
 
+                {/* Peak Frequency Display */}
+                {isAnalyzing && (
+                    <div className="absolute top-2 right-2 text-right z-10">
+                        <div className="text-[var(--color-science-cyan)] font-mono text-2xl font-bold">
+                            {peakFrequency ? `${peakFrequency} Hz` : "---"}
+                        </div>
+                        <div className="text-[var(--color-ink)]/40 font-mono text-[10px]">
+                            PEAK FREQUENCY
+                        </div>
+                    </div>
+                )}
+
                 {/* The Canvas */}
                 <canvas
                     ref={canvasRef}
@@ -129,7 +167,7 @@ export default function AudioVisualizer() {
                 {!isAnalyzing && !error && (
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                         <div className="text-[var(--color-science-cyan)]/50 font-mono text-sm animate-pulse">
-                            WAITING FOR INPUT...
+                            入力を待機中...
                         </div>
                     </div>
                 )}
@@ -149,14 +187,14 @@ export default function AudioVisualizer() {
                 >
                     <span className="absolute inset-0 rounded-full border border-[var(--color-science-cyan)] scale-110 opacity-0 group-hover:opacity-100 group-hover:animate-ping"></span>
                     <span className="w-2 h-2 rounded-full bg-[var(--color-science-cyan)] animate-pulse"></span>
-                    Initialize Sensor
+                    センサー起動
                 </button>
             ) : (
                 <button
                     onClick={stopAnalysis}
-                    className="px-6 py-2 border border-red-900/30 text-red-900/50 hover:bg-red-900/10 rounded-full font-mono text-xs transition-colors"
+                    className="px-6 py-2 border border-red-900/30 text-red-900/50 hover:bg-red-900/10 rounded-full font-mono text-xs transition-colors cursor-pointer"
                 >
-                    Terminate Sequence
+                    停止
                 </button>
             )}
         </div>
