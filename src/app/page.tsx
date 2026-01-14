@@ -91,7 +91,7 @@ export default function Home() {
               <div>
                 <div className="text-4xl mb-2">✨</div>
                 <h3 className="font-bold text-[var(--color-ink)]">Gifted</h3>
-                <p className="text-xs text-[var(--color-ink)]/60 mt-2">High resonance (>85%). A rare talent.</p>
+                <p className="text-xs text-[var(--color-ink)]/60 mt-2">High resonance (&gt;85%). A rare talent.</p>
               </div>
               <div>
                 <div className="text-4xl mb-2">🔮</div>
